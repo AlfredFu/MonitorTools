@@ -11,10 +11,9 @@ date=$(date -d "today" +"%Y-%m-%d_%H:%M:%S")
 server_all_len=${#server_all_list[*]}
 i=0
 
-#IPTABLES="$(which iptables)"
 #route connection 
 #IPTABLES -t nat -A PREROUTING -p tcp --dport 5050 -j REDIRECT --to-ports 3306
-IPTABLES="$(which iptables)"
+#IPTABLES="$(which iptables)"
 
 while [ $i -lt $server_all_len ]
 do
@@ -49,8 +48,9 @@ do
 		if is_send_msg=1
 		then
 			echo "ALERTING SERVER:${server_ip},ALERTING MSG:$message,TIME:$date"| mail -s "MYSQL PROXY ALERTING" 13482736200@139.com
-			$IPTABLES -t nat -A PREROUTING -p tcp --dport 4040 -j REDIRECT --to-ports 3306
-            $IPTABLES -t nat -A OUTPUT -p tcp -d 10.123.4.212 --dport 4040 -j DNAT --to 10.123.4.212:3306
+			/sbin/iptables -t nat -A PREROUTING -p tcp --dport 4040 -j REDIRECT --to-ports 3306
+            /sbin/iptables -t nat -A OUTPUT -p tcp -d 127.0.0.1 --dport $server_port -j DNAT --to 127.0.0.1:3306
+            /sbin/iptables -t nat -A OUTPUT -p tcp -d $server_ip --dport $server_port -j DNAT --to $server_ip:3306
 		fi
 	fi
 	let i++
