@@ -1,7 +1,7 @@
 import smtplib,email
 from email.Message import Message
 SMTP_SERVER='localhost'
-SMTP_FROM='monitor@lexisnexis.com'
+SMTP_FROM='monitor@domain.com'
 SMTP_USER=''
 SMTP_PASSWD=''
 SMTP_PORT='25'
