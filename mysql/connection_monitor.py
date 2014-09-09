@@ -11,6 +11,6 @@ db_cursor.execute("show processlist")
 conncount=db_cursor.rowcount
 #print conncount
 if conncount>50:
-        lexismail.sendNotification("Too many connection on p05,connections now:%d" % conncount)
+        lexismail.sendNotification("Too many connection on database server,connections now:%d" % conncount)
         #os.system("mmm_control set_offline db1");
         pass
