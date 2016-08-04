@@ -2,7 +2,7 @@
 import os
 import MySQLdb
 import sys
-import lexismail
+import MailUtil
 #os.system("mmm_control show")
 db_conn=MySQLdb.connect("host","user",'password','databasename')
 db_cursor=db_conn.cursor()
